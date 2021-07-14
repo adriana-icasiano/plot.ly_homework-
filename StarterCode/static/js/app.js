@@ -6,23 +6,31 @@ Feel free to disregard and create your own code */
 //     console.log(data);
 // });
 
+
 // Define function that will run on page load
 function init() {
 
     // Read json data
     d3.json("samples.json").then(function (data) {
-        console.log(data);
+        // console.log(data);
     });
     
     // Parse and filter data to get sample names
     let names = data.map(function (id){
         return id.names
     });
-    console.log("ID:", names)
+    
 
     // Add dropdown option for each sample
-    d3.select("#selDataset").on("change", buildMetadata);
-    // Call functions below using the first sample to build metadata and initial plots
+    let dropdownMenu = d3.select("#selDataset");
+    let dataset = dropdownMenu.property("value");
+    let data = names
+
+    // Call functions below using the first sample to build metadata and \
+    //initial plots
+    buildMetadata(data);
+    buildCharts(data);
+    optionChanged(data);
 
 }
 
@@ -35,13 +43,19 @@ function buildMetadata(sample) {
     });
 
     // Parse and filter the data to get the sample's metadata
-    
-    // Specify the location of the metadata and update it
+    let metadata = data.map(function (sample){
+        return sample.metadata
+    });
 
+    // Specify the location of the metadata and update it
+    Object.entries(metadata).forEach(([key, value]) =>{
+        // append the information to the demographics panel
+        // using the variables key and value
+    })
 }
 
 // Define a function that will create charts for given sample
-// function buildCharts(sample) {
+function buildCharts(sample) {
 
     // Read the json data
 
@@ -52,18 +66,18 @@ function buildMetadata(sample) {
 
     // Create bubble chart in correct location
 
-// }
+}
 
 
-// function optionChanged(sample) {
+function optionChanged(sample) {
     // The parameter being passed in this function is new sample id from dropdown menu
 
     // Update metadata with newly selected sample
 
     // Update charts with newly selected sample
 
-// }
+}
 
 // Initialize dashboard on page load
-// init();
+init();
 
