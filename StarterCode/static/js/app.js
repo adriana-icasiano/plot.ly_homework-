@@ -1,26 +1,3 @@
-/* The following is an example on how you might structure your code.
-This is not the only way to complete this assignment.
-Feel free to disregard and create your own code */
-
-// d3.json("samples.json").then(function (data) {
-//     console.log(data);
-// });
-
-// d3.json("samples.json").then(function (data) {
-//     console.log(data);
-
-//     // Parse and filter data to get sample names
-//     // let names = ["apple"]
-//     let names = [];
-//     let metadata = [];
-
-//     names.push(data.names);
-//     metadata.push(data.metadata);
-//     console.log(names);
-//     console.log(metadata);
-
-// });
-
     // Define function that will run on page load
 function init() {
 
@@ -52,9 +29,9 @@ function init() {
 // Define a function that will create metadata for given sample
 function buildMetadata(sample) {
 
+    
     // Read the json data
     d3.json("samples.json").then(function (data) {
-
     
     let metadata = data.metadata;
     
@@ -70,44 +47,62 @@ function buildMetadata(sample) {
 
     Object.entries(result).forEach(([key, value]) =>{
         demoTable.append("p").text(`${key}:${value}`);
-
-        // append the information to the demographics panel
-        // using the variables key and value
     });   
 // build gauge function
 }); 
 }
-    
-    
-    // Parse and filter the data to get the sample's metadata
-    
 
-    // Specify the location of the metadata and update it
-   
-
-
-        // Define a function that will create charts for given sample
 function buildCharts(sample) {
 
+     // Read the json data
+     d3.json("samples.json").then(function (data) {
+    
+    let samples = data.samples;
 
-    // Read the json data
+    console.log(samples);
+    
+    let resultArray = samples.filter(sampleObject => sampleObject.id == sample)
+    
+    let otuIDs = resultArray[0].otu_ids;
 
-    // Parse and filter the data to get the sample's OTU data
-    // Pay attention to what data is required for each chart
+    console.log(`otuIDs ${otuIDs}`);
 
+    let sample_values = resultArray[0].sample_values;
+
+    console.log(`sample values ${sample_values}`);
+
+    let otuLabels = resultArray[0].otu_labels;
+
+    console.log(`otu labels ${otuLabels}`);
+    
+    let topTenValues = sample_values.slice(0,10);
+        
+    let topTenOtuId = otuIDs.slice(0,10);
+
+    let topTenLabel = otuLabels.slice(0,10);
+    console.log(`top ten values ${topTenValues} otuIDs ${topTenOtuId} labels ${topTenLabel}`);
+
+    let barChart = d3.select("#bar");
+
+    barChart.html("");
+
+
+
+    
     // Create bar chart in correct location
 
     // Create bubble chart in correct location
-
+}); 
 }
 
 function optionChanged(sample) {
     // The parameter being passed in this function is new sample id from dropdown menu
-
+    let dropdownMenu = d3.select("#selDataset");
+    let sampleSelected = dropdownMenu.property("value");
     // Update metadata with newly selected sample
-
+    buildMetadata(sampleSelected);
     // Update charts with newly selected sample
-
+    buildCharts(sampleSelected);
 }
 
 // Initialize dashboard on page load
