@@ -87,19 +87,16 @@ function buildCharts(sample) {
     Plotly.newPlot('bubble', data2, layout2);
 
     //Create Bar chart 
-    let topOtuIds = OtuIds.slice(0,10).toString();
+    let topOtuIds = OtuIds.slice(0,10);
     let topSampleValues = SampleValues.slice(0,10);
     let topOtuLabels = OtuLabels.slice(0,10);
     
     console.log(`otuIDs ${topOtuIds} sample_values ${topSampleValues} Labels ${topOtuLabels}`);
-    
+    console.log(topOtuIds);
+    console.log(topSampleValues);
     let trace1 = {
-        x: topSampleValues,
-        y: topOtuIds,
-        transforms: [{
-            type: 'sort',
-            target: 'x',
-            order: 'descending'}],
+        x: topSampleValues.reverse(),
+        y: topOtuIds.reverse().map(topOtuId => `OTU #${topOtuId}`),
         // mode: 'markers',
         // marker: {},
         // line: {width:1.5},
