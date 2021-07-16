@@ -120,12 +120,7 @@ function buildCharts(sample) {
     Plotly.newPlot("bar", traceData, layout);
 
     //Creat gauge chart
-    // let metadata = data.metadata;
     
-    // console.log(metadata);
-    
-    // let resultArray = metadata.filter(sampleObject => sampleObject.id == sample);
-
     let resultArray1 = data.metadata.filter(sampleObject => sampleObject.id == sample);
     let wfreq = resultArray1[0].wfreq;
     console.log(wfreq);
@@ -167,12 +162,7 @@ function buildCharts(sample) {
       
       let layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
       Plotly.newPlot('gauge', data3, layout3);
-      
-
-
-    
-
-    
+          
 }); 
 }
 
