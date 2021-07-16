@@ -71,7 +71,8 @@ function buildCharts(sample) {
         mode: 'markers',
         marker: {
           color: SampleValues, 
-          size: SampleValues
+          size: SampleValues,
+          colorscale: [[0, 'rgb(200, 255, 200)'], [1, 'rgb(0, 100, 0)']]
         }
       };
       
