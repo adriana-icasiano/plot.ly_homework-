@@ -58,40 +58,121 @@ function buildCharts(sample) {
      d3.json("samples.json").then(function (data) {
     
     let samples = data.samples;
-
-    console.log(samples);
+    let resultArray = samples.filter(sampleObject => sampleObject.id == sample);
     
-    let resultArray = samples.filter(sampleObject => sampleObject.id == sample)
+    let OtuIds = resultArray[0].otu_ids;
+    let SampleValues = resultArray[0].sample_values;
+    let OtuLabels = resultArray[0].otu_labels;
     
-    let otuIDs = resultArray[0].otu_ids;
+    //Create bubble chart
+    let trace2 = {
+        x: OtuIds,
+        y: SampleValues,
+        mode: 'markers',
+        marker: {
+          color: SampleValues, 
+          size: SampleValues
+        }
+      };
+      
+    let data2 = [trace2];
+      
+    let  layout2 = {
+        title: 'Bubble Chart of Otu ID',
+        // showlegend: false,
+        // height: 600,
+        // width: 600
+      };
+      
+    Plotly.newPlot('bubble', data2, layout2);
 
-    console.log(`otuIDs ${otuIDs}`);
-
-    let sample_values = resultArray[0].sample_values;
-
-    console.log(`sample values ${sample_values}`);
-
-    let otuLabels = resultArray[0].otu_labels;
-
-    console.log(`otu labels ${otuLabels}`);
+    //Create Bar chart 
+    let topOtuIds = OtuIds.slice(0,10).toString();
+    let topSampleValues = SampleValues.slice(0,10);
+    let topOtuLabels = OtuLabels.slice(0,10);
     
-    let topTenValues = sample_values.slice(0,10);
-        
-    let topTenOtuId = otuIDs.slice(0,10);
+    console.log(`otuIDs ${topOtuIds} sample_values ${topSampleValues} Labels ${topOtuLabels}`);
+    
+    let trace1 = {
+        x: topSampleValues,
+        y: topOtuIds,
+        transforms: [{
+            type: 'sort',
+            target: 'x',
+            order: 'descending'}],
+        // mode: 'markers',
+        // marker: {},
+        // line: {width:1.5},
+        text: topOtuLabels, 
+        type: "bar",
+        orientation: "h"
+    };
+    // console.log( ` ${otuIds}`);
+    // console.log( ` ${sampleValues.sort((a,b)=>(b-a))}`);
+    
+    let layout = {
+        hovermode:'closest',
+        title: 'Top 10 OTU IDs'
+     };
 
-    let topTenLabel = otuLabels.slice(0,10);
-    console.log(`top ten values ${topTenValues} otuIDs ${topTenOtuId} labels ${topTenLabel}`);
+    let traceData = [trace1];
 
-    let barChart = d3.select("#bar");
+    Plotly.newPlot("bar", traceData, layout);
 
-    barChart.html("");
+    //Creat gauge chart
+    // let metadata = data.metadata;
+    
+    // console.log(metadata);
+    
+    // let resultArray = metadata.filter(sampleObject => sampleObject.id == sample);
 
+    let resultArray1 = data.metadata.filter(sampleObject => sampleObject.id == sample);
+    let wfreq = resultArray1[0].wfreq;
+    console.log(wfreq);
+
+    let data3 = [
+        {
+          domain: { x: [0, 1], y: [0, 1] },
+          value: wfreq,
+          title: { text: "Weekly Scrub Frequency" },
+          type: "indicator",
+          mode: "gauge+number",
+        //   'scale-r' :{
+        //     aperture: 9,     //Specify your scale range.
+        //     values: "0:9:1" //Provide min/max/step scale values.
+        //   },
+          series: [
+            {
+              values: [wfreq],
+              csize: "5%",     //Needle Width
+              size: "100%",    //Needle Length
+              'background-color': "#000000"  //Needle Color
+            }],
+          gauge: {
+            axis: { range: [null, 9] },
+            steps: [
+              { range: [0, 1], color: "ivory" },
+              { range: [1, 2], color: "beige" },
+              { range: [2, 3], color: "azure" },
+              { range: [3, 4], color: "honeydew" },
+              { range: [4, 5], color: "PaleTurquoise" },
+              { range: [5, 6], color: "lightgreen" },
+              { range: [6, 7], color: "MediumTurquoise" },
+              { range: [7, 8], color: "turquoise" },
+              { range: [8, 9], color: "seagreen" }
+            ],
+          }
+        }
+      ];
+      
+      let layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+      Plotly.newPlot('gauge', data3, layout3);
+      
 
 
     
-    // Create bar chart in correct location
 
-    // Create bubble chart in correct location
+    
 }); 
 }
 
