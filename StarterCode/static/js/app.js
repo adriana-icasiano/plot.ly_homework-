@@ -70,9 +70,9 @@ function buildCharts(sample) {
         y: SampleValues,
         mode: 'markers',
         marker: {
-          color: SampleValues, 
+          color: OtuIds, 
           size: SampleValues,
-          colorscale: [[0, 'rgb(200, 255, 200)'], [1, 'rgb(0, 100, 0)']]
+          colorscale: [[0, 'rgb(1, 0, 191)'], [1, 'rgb(255, 183, 255)']]
         }
       };
       
