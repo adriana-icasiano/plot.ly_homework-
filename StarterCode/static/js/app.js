@@ -46,9 +46,9 @@ function buildMetadata(sample) {
     demoTable.html("");
 
     Object.entries(result).forEach(([key, value]) =>{
-        demoTable.append("p").text(`${key}:${value}`);
+        demoTable.append("p").text(`${key} : ${value}`);
     });   
-// build gauge function
+
 }); 
 }
 
