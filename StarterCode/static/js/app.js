@@ -81,8 +81,8 @@ function buildCharts(sample) {
     let  layout2 = {
         title: 'Bubble Chart of Otu ID',
         // showlegend: false,
-        // height: 600,
-        // width: 600
+        height: 600,
+        width: 1300
       };
       
     Plotly.newPlot('bubble', data2, layout2);
