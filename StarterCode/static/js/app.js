@@ -2,7 +2,7 @@
 function init() {
 
     // Read json data
-    d3.json("samples.json").then(function (data){
+    d3.json("../samples.json").then(function (data){
      
 
     // Parse and filter data to get sample names
