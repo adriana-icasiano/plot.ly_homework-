@@ -4,6 +4,9 @@ In this assignment, students are required to build an interactive dashboard to e
 
 The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
+## Table of Cotents
+* [Homework Requirements](#Homework-Requirements)
+* 
 ## Homework Requirements
 
 1. Populate a dropdown menu with all of the Sample ID's. When an option is selected, this will update all of the charts.
@@ -18,11 +21,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 5. Update all of the plots any time that a new sample is selected.
 
-Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown below:
-
-## Advanced Challenge Assignment (Optional)
-
-The following task is advanced and therefore optional.
+## Bonus (Optional)
 
 * Adapt the Gauge Chart from [Javascript Plotly Documentation](https://plot.ly/javascript/gauge-charts/) to plot the weekly washing frequency of the individual.
 
