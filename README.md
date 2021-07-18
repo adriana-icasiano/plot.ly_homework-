@@ -28,8 +28,8 @@ The following task is advanced and therefore optional.
 
 * Update the chart whenever a new sample is selected.
 
-![Final Website](https://github.com/adriana-icasiano/plot.ly_homework-/blob/main/Images/belly_button_website.PNG)
-
 ## Deployment
 
 * Deploy app to a free static page hosting service, such as GitHub Pages. Submit the links to your deployment and your GitHub repo.
+
+![Final Website](https://github.com/adriana-icasiano/plot.ly_homework-/blob/main/Images/belly_button_website.PNG)
