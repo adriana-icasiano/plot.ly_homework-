@@ -22,6 +22,7 @@ function init() {
      //initial plots
     buildMetadata(samples[0]);
     buildCharts(samples[0]);
+    buildGauge(samples[0]);
     optionChanged(samples[0]);
     });
 }
@@ -80,7 +81,6 @@ function buildCharts(sample) {
       
     let  layout2 = {
         title: 'Bubble Chart of Otu ID',
-        // showlegend: false,
         height: 600,
         width: 1300
       };
@@ -98,16 +98,11 @@ function buildCharts(sample) {
     let trace1 = {
         x: topSampleValues.reverse(),
         y: topOtuIds.reverse().map(topOtuId => `OTU #${topOtuId}`),
-        // mode: 'markers',
-        // marker: {},
-        // line: {width:1.5},
         text: topOtuLabels, 
         type: "bar",
         orientation: "h"
     };
-    // console.log( ` ${otuIds}`);
-    // console.log( ` ${sampleValues.sort((a,b)=>(b-a))}`);
-    
+        
     let layout = {
         hovermode:'closest',
         title: 'Top 10 OTU IDs'
@@ -117,39 +112,7 @@ function buildCharts(sample) {
 
     Plotly.newPlot("bar", traceData, layout);
 
-    //Creat gauge chart
     
-    let resultArray1 = data.metadata.filter(sampleObject => sampleObject.id == sample);
-    let wfreq = resultArray1[0].wfreq;
-    console.log(wfreq);
-
-    let data3 = [
-        {
-          domain: { x: [0, 1], y: [0, 1] },
-          value: wfreq,
-          title: { text: "Weekly Scrub Frequency" },
-          type: "indicator",
-          mode: "gauge+number",
-        //   'scale-r' :{
-        //     aperture: 9,     //Specify your scale range.
-        //     values: "0:9:1" //Provide min/max/step scale values.
-        //   },
-          series: [
-            {
-              values: [wfreq],
-              csize: "5%",     //Needle Width
-              size: "100%",    //Needle Length
-              'background-color': "#000000"  //Needle Color
-            }],
-          gauge: {
-            axis: { range: [null, 9] },
-                      }
-        }
-      ];
-      
-      let layout3 = { width: 600, height: 450, margin: { t: 0, b: 0 } };
-      Plotly.newPlot('gauge', data3, layout3);
-          
 }); 
 }
 
@@ -161,6 +124,8 @@ function optionChanged(sample) {
     buildMetadata(sampleSelected);
     // Update charts with newly selected sample
     buildCharts(sampleSelected);
+     // Update gauge chart with newly selected sample
+    buildGauge(sampleSelected);
 }
 
 // Initialize dashboard on page load
