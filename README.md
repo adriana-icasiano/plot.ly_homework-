@@ -6,7 +6,10 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 ## Table of Cotents
 * [Homework Requirements](#Homework-Requirements)
-* 
+* [Bonus](#bonus)
+* [Deployment](#deployment)
+* [Published Website](#published-website)
+
 ## Homework Requirements
 
 1. Populate a dropdown menu with all of the Sample ID's. When an option is selected, this will update all of the charts.
@@ -21,7 +24,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 5. Update all of the plots any time that a new sample is selected.
 
-## Bonus (Optional)
+## Bonus 
 
 * Adapt the Gauge Chart from [Javascript Plotly Documentation](https://plot.ly/javascript/gauge-charts/) to plot the weekly washing frequency of the individual.
 
