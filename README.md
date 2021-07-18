@@ -24,7 +24,7 @@ Additionally, you are welcome to create any layout that you would like for your 
 
 The following task is advanced and therefore optional.
 
-* Adapt the Gauge Chart from <https://plot.ly/javascript/gauge-charts/> to plot the weekly washing frequency of the individual.
+* Adapt the Gauge Chart from [Javascript Plotly Documentation](https://plot.ly/javascript/gauge-charts/) to plot the weekly washing frequency of the individual.
 
 * Update the chart whenever a new sample is selected.
 
@@ -34,4 +34,5 @@ The following task is advanced and therefore optional.
 
 ## Publish Webiste 
 [Final Website](https://adriana-icasiano.github.io/plot.ly_homework-/)<br>
+
 ![Final Website Image](https://github.com/adriana-icasiano/plot.ly_homework-/blob/main/Images/belly_button_website.PNG)
